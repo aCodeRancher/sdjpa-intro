@@ -10,4 +10,5 @@ public class SdjpaIntroApplication {
         SpringApplication.run(SdjpaIntroApplication.class, args);
     }
 
+
 }
