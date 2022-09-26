@@ -15,6 +15,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
@@ -52,8 +54,8 @@ public class MySQLIntegrationTest {
         AuthorEmbedded saved = authorEmbeddedRepository.save(authorEmbedded);
         assertThat(saved).isNotNull();
 
-        AuthorEmbedded fetched = authorEmbeddedRepository.getById(nameId);
-        assertThat(fetched).isNotNull();
+        Optional<AuthorEmbedded> fetched = authorEmbeddedRepository.findById(nameId);
+        assertThat(fetched.get()).isNotNull();
     }
 
     @Test
@@ -67,8 +69,8 @@ public class MySQLIntegrationTest {
         AuthorComposite saved = authorCompositeRepository.save(authorComposite);
         assertThat(saved).isNotNull();
 
-        AuthorComposite fetched = authorCompositeRepository.getById(nameId);
-        assertThat(fetched).isNotNull();
+        Optional<AuthorComposite> fetched = authorCompositeRepository.findById(nameId);
+        assertThat(fetched.get()).isNotNull();
     }
 
     @Test
@@ -77,8 +79,8 @@ public class MySQLIntegrationTest {
         bookNatural.setTitle("My Book");
         BookNatural saved = bookNaturalRepository.save(bookNatural);
 
-        BookNatural fetched = bookNaturalRepository.getById(saved.getTitle());
-        assertThat(fetched).isNotNull();
+        Optional<BookNatural> fetched = bookNaturalRepository.findById(saved.getTitle());
+        assertThat(fetched.get()).isNotNull();
     }
 
     @Test
